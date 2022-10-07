@@ -1,7 +1,6 @@
 import {unstable_HistoryRouter as Router, Routes, Route, Link} from "react-router-dom";
 // import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import {Home, About, Contact} from "./pages"
-import {userConfirmation} from './UserConfirmation'
 import {history} from "./useHistoryBlock";
 
 

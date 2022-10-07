@@ -1,22 +1,13 @@
-import {useEffect, useRef, useState} from "react";
-import {createBrowserHistory, History} from "history";
-import {userConfirmation} from "./UserConfirmation";
+import { useEffect } from "react";
+import { createBrowserHistory } from "history";
+import { userConfirmation } from "./UserConfirmation";
 
 const history = createBrowserHistory()
 
-
 function useHistoryBlock(enabled: boolean) {
-    // const ref = useRef(false)
-    const [confirm, setConfirm] = useState(false)
-
-    const cb = (v: boolean) => {
-        // if(ref.current) ref.current = v
-        setConfirm(v)
-    }
-
-
     useEffect(() => {
         let unblock: () => void | undefined;
+
         if (enabled) {
             // Block navigation and register a callback that
             // fires when a navigation attempt is blocked.
@@ -24,17 +15,14 @@ function useHistoryBlock(enabled: boolean) {
                 // Navigation was blocked! Let's show a confirmation dialog
                 // so the user can decide if they actually want to navigate
                 // away and discard changes they've made in the current page.
-                userConfirmation('Are you sure you want to go to ?', cb)
+                userConfirmation(`Are you sure you want to go to ?`, (isAccepted) => {
+                    if (isAccepted) {
+                        unblock?.();
 
-
-                if(confirm) {
-                // if (window.confirm(`Are you sure you want to go to ?`)) {
-                    // Unblock the navigation.
-                    unblock?.();
-
-                    // Retry the transition.
-                    tx.retry();
-                }
+                        // Retry the transition.
+                        tx.retry();
+                    }
+                })
             });
         }
 
@@ -43,7 +31,7 @@ function useHistoryBlock(enabled: boolean) {
                 unblock();
             }
         };
-    }, [enabled, confirm]);
+    }, [enabled]);
 }
 
 export {history, useHistoryBlock}
