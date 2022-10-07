@@ -1,0 +1,131 @@
+/* Your CSS goes here */
+
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --red: #f32827;
+  --purple: #a42ce9;
+  --blue: #2d7fea;
+  --yellow: #f4f73e;
+  --pink: #eb30c1;
+  --gold: #ffd500;
+  --aqua: #2febd2;
+  --gray: #282c35;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  font-family: proxima-nova, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--white);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 50px;
+}
+
+.yellow-border {
+  padding: 0;
+  margin: 0;
+  background: var(--yellow);
+  height: 5px;
+  width: 100%;
+}
+
+a {
+  color: var(--yellow);
+  font-weight: 600;
+}
+
+
+input,
+textarea {
+  border-radius: 2px;
+  padding: 5px;
+  display: block;
+  margin-bottom: 10px;
+  border: none;
+}
+
+label {
+  font-size: 14px;
+  color: #838a98;
+}
+
+button {
+  border: 1px solid var(--yellow);
+  background: var(--black);
+  color: var(--white);
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+hr {
+  margin-top: 50px;
+}
+
+ul {
+  display: flex;
+  padding: 0;
+  justify-content: flex-end;
+}
+
+li {
+  list-style-type: none;
+  margin-right: 15px;
+}
+
+.modal-outline {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255,255,255, 0.4);
+  position: absolute;
+  top: 0;
+  display: grid;
+  place-content: center;
+}
+
+.modal {
+  background-color: var(--purple);
+  border-radius: 5px;
+  border: 2px solid var(--yellow);
+  height: 200px;
+  width: 600px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.modal-footer button:first-child {
+  margin-right: 8px;
+}
