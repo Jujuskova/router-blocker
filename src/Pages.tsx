@@ -1,25 +1,24 @@
-import {useCallback, useState} from "react";
-import useBeforeUnload from '../useBeforeUnload'
-import {useHistoryBlock} from "../useHistoryBlock";
+import {FormEvent, useCallback, useState} from "react";
+import {useHistoryBlock} from "./useHistoryBlock";
 
 function Form() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
 
-    const isBlocking = useCallback(() => {
-        return name.length > 0 || email.length > 0;
-    }, [name, email])
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        alert("Submitted!");
+        setName("");
+        setEmail("");
+    }
+
+    const isBlocking = useCallback(() => name.length > 0 || email.length > 0, [name, email])
 
     useHistoryBlock(isBlocking())
 
     return (
         <form
-            onSubmit={(e) => {
-                e.preventDefault();
-                alert("Submitted!");
-                setName("");
-                setEmail("");
-            }}
+            onSubmit={onSubmit}
         >
             <label htmlFor="name">Name</label>
             <input
@@ -27,7 +26,6 @@ function Form() {
                 onChange={(e) => setName(e.target.value)}
                 type="text"
                 id="name"
-                placeholder="name"
             />
             <label htmlFor="email">Email</label>
             <input
@@ -35,7 +33,6 @@ function Form() {
                 onChange={(e) => setEmail(e.target.value)}
                 type="text"
                 id="email"
-                placeholder="email"
             />
 
             <button type="submit">Submit</button>

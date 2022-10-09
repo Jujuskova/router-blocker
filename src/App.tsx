@@ -1,7 +1,6 @@
-import {unstable_HistoryRouter as Router, Routes, Route, Link} from "react-router-dom";
-// import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
-import {Home, About, Contact} from "./pages"
-import {history} from "./useHistoryBlock";
+import { unstable_HistoryRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import { Home, About, Contact } from "./Pages"
+import { history } from "./useHistoryBlock";
 
 
 function App() {
@@ -9,21 +8,21 @@ function App() {
         <Router history={history}>
             <ul>
                 <li>
-                    <Link to="/">Home</Link>
+                    <NavLink to="/" end className={({ isActive }) =>isActive ? 'activeNavItem' : undefined} >Home</NavLink>
                 </li>
                 <li>
-                    <Link to="/about">About</Link>
+                    <NavLink to="/about" className={({ isActive }) =>isActive ? 'activeNavItem' : undefined}>About</NavLink>
                 </li>
                 <li>
-                    <Link to="/contact">Contact</Link>
+                    <NavLink to="/contact" className={({ isActive }) =>isActive ? 'activeNavItem' : undefined}>Contact</NavLink>
                 </li>
             </ul>
 
-            <div style={{paddingInline: '32px'}}>
+            <div style={{ paddingInline: '32px' }}>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
                     <Route path="/about" element={<About/>}/>
                     <Route path="/contact" element={<Contact/>}/>
+                    <Route path="/" element={<Home/>}/>
                 </Routes>
             </div>
         </Router>
